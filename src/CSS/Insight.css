@@ -1,0 +1,14 @@
+
+.logo-container{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    z-index: 1000;
+    box-shadow: 0px 5px 8px -9px rgba(0,0,0,0.5);
+}
+.insight_container{
+    display:flex;
+    margin-top: 50px;
+}

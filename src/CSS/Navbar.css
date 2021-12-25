@@ -1,0 +1,87 @@
+.Iheader{
+    margin-left: 5%;
+    display: flex;
+    flex: 0.2;
+    flex-direction: column;
+    line-height: 5px;
+}
+.Iheader_icons{
+    display:flex;
+    flex-direction: column;
+}
+.Iheader_icon{
+    display: flex;
+}
+.Iheader_icon > .MuiSvgIcon-root{
+    color:rgb(131, 127, 127);
+    cursor: pointer;
+    font-size: xx-large;
+    padding: 5px 20px;
+}
+.Iheader_icon > .MuiSvgIcon-root:hover{
+    color:black;
+    border-radius: 10px;
+    background-color: lightgrey;
+}
+.Iheader_search{
+    display: flex;
+    align-items: center;
+    border: 1px solid lightgrey;
+    padding: 5px;
+    margin-left: 20px;
+    border-radius: 5px;
+}
+.Iheader_search>input{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: rgb(49,49,49);
+}
+
+.Iheader_search>.MuiSvgIcon-root{
+    color: gray;
+}
+.Iheader_Rem{
+    display: flex;
+    flex-direction: column;
+
+}
+.Iheader_Rem>.Iheader_avatar{
+    margin-top: 10px;
+    cursor: pointer;
+    padding: 5px 20px;
+    //border: 1px solid black;
+}
+.Iheader_Rem>.lang_icon{
+    cursor: pointer;
+}
+.Iheader_Rem>.lang_icon>.MuiSvgIcon-root{
+    font-size: xx-large;
+    color: gray;
+    cursor: pointer;
+    //border: 1px solid black;
+    padding: 5px 20px;
+}
+.Iheader_Rem>.lang_icon>.MuiSvgIcon-root:hover{
+    color: black;
+}
+.Iheader_Rem>.MuiButton-root{
+    color: gray;
+    margin-left: 25px;
+    text-transform: inherit;
+    background: lightgrey;
+    cursor: pointer;
+}
+.Iheader_Rem>.MuiButton-root:hover{
+    color: white;
+    background-color: black;
+}
+.Iheader_avatar{
+    display: flex;
+}
+.Iheader_avatar>p{
+    margin-left:12px;
+}
+.lang_icon{
+    display: flex;
+}

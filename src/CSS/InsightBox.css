@@ -1,0 +1,36 @@
+.insightBox {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid lightgray;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    line-height: 2%;
+  }
+  
+  .insightBox:hover {
+    border: 1px solid rgb(175, 175, 175);
+  }
+  
+  .InsightBox__info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .InsightBox__info > h5 {
+    color: rgb(129, 129, 129);
+    font-weight: 300;
+    margin-left: 10px;
+  }
+  
+  .InsightBox__insight {
+    display: flex;
+    padding: 0;
+  }
+  
+  .InsightBox__insight > p {
+    color: gray;
+    font-weight: bold;
+    font-size: large;
+  }

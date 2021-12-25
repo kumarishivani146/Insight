@@ -1,0 +1,26 @@
+.sidebarOptions{
+    display: flex;
+    flex-direction: column;
+    padding-left: 5%;
+}
+.sidebarOption{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    flex:0.6;
+}
+.sidebarOptions> .sidebarOption >img{
+    height:90px;
+    width:100px;
+    border-radius: 25%;
+}
+.sidebarOption:hover{
+    background-color: lightgrey;
+    transform: translateY(15px);
+}
+.sidebarOption > p {
+    margin-left: 20px;
+    color: rgb(2,0,36);
+    font-weight: 400;
+  }
