@@ -1,5 +1,5 @@
 import React, { useContext,useState } from "react";
-import { auth, provider } from "../../firebase";
+import {auth} from "../../firebase";
 import { AccountContext } from "./accountContext";
 import {
   BoldLink,
@@ -14,13 +14,18 @@ export function LoginForm(props) {
   const { switchToSignup } = useContext(AccountContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleLogin=(e)=>{
-      e.preventDefault()
-      auth.signInWithEmailAndPassword(email,password).then((auth)=>{
-          console.log(auth)
-      }).catch((e)=>alert(e.message))
-      setEmail("");
-      setPassword("");
+  const handleLogin=()=>{
+    auth.signInWithEmailAndPassword(email , password)
+    .then((userCredential)=>{
+        // send verification mail.
+      console.log(auth.currentUser.emailVerified);
+      if(!auth.currentUser.emailVerified)
+      {
+        auth.signOut();
+        alert("Verify the email and login back!!");
+      }
+    })
+    .catch(alert);
   }
     return (
       <BoxContainer>

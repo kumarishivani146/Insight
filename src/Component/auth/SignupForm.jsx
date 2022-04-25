@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
-import { auth, provider } from "../../firebase";
+
+import { auth} from "../../firebase";
 import { AccountContext } from "./accountContext";
 import {
   BoldLink,
@@ -15,8 +16,8 @@ export function SignupForm(props) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const handleRegister=(e)=>{
-        e.preventDefault()
+    const handleRegister=()=>{
+        /*e.preventDefault()
         auth.createUserWithEmailAndPassword(email,password).then
         ((auth)=>{
             if(auth){
@@ -24,7 +25,16 @@ export function SignupForm(props) {
             }
         }).catch((e)=>alert(e.message));
         setEmail("");
-        setPassword("");
+        setPassword("");*/
+        auth.createUserWithEmailAndPassword(email , password)
+        .then((userCredential)=>{
+            // send verification mail.
+          userCredential.user.sendEmailVerification();
+          console.log(auth.currentUser);
+          auth.signOut();
+          alert("Email sent");
+        })
+        .catch(alert);
     }
     return (
       <BoxContainer>

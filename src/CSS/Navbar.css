@@ -85,3 +85,32 @@
 .lang_icon{
     display: flex;
 }
+.modal_user_info{
+    display: flex;
+    align-items: center;
+}
+.modal_user_info > h5 {
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 13px;
+  }
+
+  .modal_body > #add_query{
+      border: none;
+      border-bottom: solid black 2px;
+      margin-bottom: 15px;
+  }
+
+  .modal_body > #add_link{
+    padding: 10px;
+    box-shadow: 0 0 5px #666 inset;
+    margin-bottom: 15px;
+  }
+  .modal_body>.op_btn{
+      width: 50%;
+      padding: 15px;
+      border-radius: 50px;
+      //box-shadow: 0 0 5px #666 inset;
+      margin: 20px auto;
+  }
+  
