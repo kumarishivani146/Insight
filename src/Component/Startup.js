@@ -3,7 +3,7 @@ import "../CSS/Feed.css"
 import db from '../firebase';
 import InsightBox from './InsightBox'
 import Post from './Post'
-function Feed() {
+function Startup() {
     const [posts,setPosts]=useState([]);
     useEffect(()=>{
         db.collection('questions').orderBy('timestamp',"desc").onSnapshot(snapshot=>setPosts(snapshot.docs.map((doc)=>(({
@@ -15,22 +15,20 @@ function Feed() {
         <div className="feed">
             <InsightBox/>
             {
-                
                 posts.map(({id,question})=>(
-                    <Post
+                    question.feild.includes("Startup")&&<Post
                         key={id}
                         Id={id}
                         imageUrl={question.imageUrl}
                         question={question.question}
                         timestamp={question.timestamp}
                         postUser={question.user}
+
                     />
                 ))
             }
-            
-            
         </div>
     )
 }
 
-export default Feed
+export default Startup

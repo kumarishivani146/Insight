@@ -9,8 +9,9 @@
     padding: 10px;
     cursor: pointer;
     flex:0.6;
+    text-decoration: none;
 }
-.sidebarOptions> .sidebarOption >img{
+.sidebarOptions>img{
     height:90px;
     width:100px;
     border-radius: 25%;

@@ -13,23 +13,36 @@ import { selectUser } from '../features/userSlice'
 import db, { auth } from '../firebase'
 import Modal from 'react-modal'
 import { serverTimestamp } from "firebase/firestore";
+import Select from 'react-select';
+import { Link } from 'react-router-dom'
 function Navbar() {
 
     const user=useSelector(selectUser)
+    // const [selectedValue, setSelectedValue] = useState([]);
     const [openModel, setOpenModel]=useState(false);
     const [context,setContext]=useState("");
     const [contextUrl,setContextUrl]=useState("");
     const handleQuestion =(e)=>{
         e.preventDefault();
-        setOpenModel(false);
-        db.collection('questions').add({
-            question:context,
-            imageUrl:contextUrl,
-            timestamp: serverTimestamp(),
-            user: user,
-        });
-        setContext("");
-        setContextUrl("");
+        if(!selectedValue.length){
+            alert("Kindly Select the Related Field")
+        }
+        else if(context==""){
+            alert("Kindly add the question yo have in your mind!!")
+        }
+        if(selectedValue&&context!="")
+        {
+            db.collection('questions').add({
+                question:context,
+                imageUrl:contextUrl,
+                timestamp: serverTimestamp(),
+                user: user,
+                feild: selectedValue,
+            });
+            setContext("");
+            setContextUrl("");
+            setOpenModel(false);
+        }
     }
     const customStyles = {
         content: {
@@ -43,7 +56,30 @@ function Navbar() {
           transform: 'translate(-50%, -50%)',
         },
       };
-        
+
+
+
+
+    const data=[
+        {value:1,label:'Internship'},
+        {value:2,label:'Coding'},
+        {value:3,label:'Development'},
+        {value:4,label:'Science'},
+        {value:5,label:'Mathematics'},
+        {value:6,label:'Projects'},
+        {value:7,label:'Photography'},
+        {value:8,label:'Placement'},
+        {value:9,label:'Startup'},
+        {value:10,label:'Technology'},
+        {value:11,label:'Innovation'}
+    ];
+    
+    const [selectedValue, setSelectedValue] = useState([]);
+    const handleSelectedChange = (e) => {
+      setSelectedValue(Array.isArray(e) ? e.map(x => x.label) : []);
+    }
+
+
     return (
         <div className="Iheader">
             <div className="Iheader_icons">
@@ -69,26 +105,37 @@ function Navbar() {
                                 <Avatar className='avatar'/><h5>{user.email}</h5>
                                 </div>
                                 <div className='modal_body' style={{display:"flex",flexDirection:"column",justifyContent:"flex-end"}}>
-                                    <input id="add_query" type="text" value={context} onChange={(e)=>setContext(e.target.value)} placeholder='Write your Query here' required/>
+                                <Select
+                                    className="dropdown"
+                                    placeholder="Select Option"
+                                    value={data.filter(obj => selectedValue.includes(obj.label))} // set selected values
+                                    options={data} // set list of the data
+                                    onChange={handleSelectedChange} // assign onChange function
+                                    isMulti
+                                />
+                                <br/>
+                                    {/* {console.log(selectedValue)} */}
+                                    <input id="add_query" type="text" value={context} onChange={(e)=>setContext(e.target.value)} placeholder='Write your Query here'/>
                                     <input id="add_link" type="text" value={contextUrl} onChange={(e)=>setContextUrl(e.target.value)}placeholder='Any link you want to insert'/>
                                     {
                                         contextUrl!==""&&<img style={{height:"40vh",
                                         objectFit:"contain"}}src={contextUrl} alt="ContextImage" />
                                     }
                                     
-                                    <input class="op_btn" style={{backgroundColor:"#4DBDEB"}} type="submit" onClick={handleQuestion} placeholder='Add query'/>
-                                    <input class="op_btn" style={{backgroundColor:"black",color:"white"}}type="button" value='cancel' />
+                                    <input class="op_btn" style={{backgroundColor:"#4DBDEB"}} type="submit" onClick={handleQuestion}/>
+                                    <input class="op_btn" style={{backgroundColor:"black",color:"white"}}type="button" value='cancel' onClick={()=>{setOpenModel(false)}}/>
                                     
                                 </div>
                             </div>
                         </div>
-                    </Modal>
+                    </Modal> 
+                    
                 </div>
                 <div className="Iheader_icon">
-                    <HomeIcon/><p>Home</p>
+                    <HomeIcon/><Link to="/" style={{ textDecoration: 'none',}}><p>Home</p></Link>
                 </div>
                 <div className="Iheader_icon">
-                    <FeaturedPlayListOutlinedIcon/><p>Questions</p>
+                    <FeaturedPlayListOutlinedIcon/><Link to="/questions" style={{ textDecoration: 'none',}}><p>Questions</p></Link>
                 </div>
                 <div className="Iheader_icon">
                     <AssignmentTurnedInOutlinedIcon/><p>Answered</p>
