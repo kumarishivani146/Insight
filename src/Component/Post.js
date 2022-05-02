@@ -16,10 +16,8 @@ import { selectQuesionId, selectQuesionName, setQuestionInfo } from '../features
 import { serverTimestamp } from "firebase/firestore";
 import db from '../firebase';
 import Parser from 'html-react-parser';
-import Query from './Query';
-
 Modal.setAppElement('#root')
-function Post({Id, question, imageUrl, timestamp, postUser}) {
+function Post({Id, question, imageUrl, timestamp, postUser, answeredUser}) {
     const [openModel, setOpenModel]=useState(false);
     const [context,setContext]=useState(question);
     const [contextUrl,setContextUrl]=useState(imageUrl);
@@ -31,6 +29,7 @@ function Post({Id, question, imageUrl, timestamp, postUser}) {
     const [ans, setAns]=useState("");
     const [openQuillModel, setOpenQuillModel]=useState(false);
     const [getAns, setGetAns]=useState([]);
+    const [getAnsUser,setGetAnsUser]=useState(answeredUser)
     useEffect(() => {
         if (questionId) {
           db.collection("questions")
@@ -86,7 +85,10 @@ function Post({Id, question, imageUrl, timestamp, postUser}) {
     }
     const handleAns=(e)=>{
         e.preventDefault()
+
         if(questionId){
+            if(!answeredUser.includes(user.email))
+            answeredUser.push(user.email)
             db.collection('questions').doc(questionId).collection('answers').add({
                 questionId: questionId,
                 timestamp: serverTimestamp(),
@@ -98,6 +100,9 @@ function Post({Id, question, imageUrl, timestamp, postUser}) {
             // console.log(questionId, questionName);
             setAns("");
             setOpenQuillModel(false);
+            db.collection('questions').doc(questionId).update({
+                answeredUser:answeredUser,
+             })
         }
     }
     

@@ -22,6 +22,7 @@ function Navbar() {
     const [openModel, setOpenModel]=useState(false);
     const [context,setContext]=useState("");
     const [contextUrl,setContextUrl]=useState("");
+    const [answeredUser,setAnsweredUser]=useState([]);
     const handleQuestion =(e)=>{
         e.preventDefault();
         if(!selectedValue.length){
@@ -38,6 +39,7 @@ function Navbar() {
                 timestamp: serverTimestamp(),
                 user: user,
                 feild: selectedValue,
+                answeredUser: answeredUser,
             });
             setContext("");
             setContextUrl("");
@@ -138,7 +140,7 @@ function Navbar() {
                     <FeaturedPlayListOutlinedIcon/><Link to="/questions" style={{ textDecoration: 'none',}}><p>Questions</p></Link>
                 </div>
                 <div className="Iheader_icon">
-                    <AssignmentTurnedInOutlinedIcon/><p>Answered</p>
+                    <AssignmentTurnedInOutlinedIcon/><Link to="/answered" style={{ textDecoration: 'none',}}><p>Answered</p></Link>
                 </div>
                 <div className="Iheader_icon">
                     <PeopleOutlinedIcon/><p>Spaces</p>

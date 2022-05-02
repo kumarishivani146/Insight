@@ -21,6 +21,7 @@ import {
     Link
   } from "react-router-dom";
 import Questions from './Questions'
+import Answered from './Answered'
 function Insight() {
     return (
         //tadadi1015@sofrge.com
@@ -45,6 +46,7 @@ function Insight() {
                 <Route exact path="/startup" element={<Startup/>}/>
                 <Route exact path="/innovation" element={<Innovation/>}/>
                 <Route exact path="/questions" element={<Questions/>}/>
+                <Route exact path="/answered" element={<Answered/>}/>
             </Routes>
             <Sidebar/>
             </div>
